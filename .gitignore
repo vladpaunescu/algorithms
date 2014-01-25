@@ -27,3 +27,7 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+/HackerRank/SumNPartitionsDistinctTermsScala/nbproject/private/
+/HackerRank/SumNPartitionsDistinctTermsScala/build/
+/HackerRank/SumPartitionsDistinctTerms/nbproject/private/
+/HackerRank/SumPartitionsDistinctTerms/build/
