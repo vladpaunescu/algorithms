@@ -11,7 +11,7 @@
 using namespace std;
 
 int n, k, a;
-int counts[20][9];
+int counts[20][10];
 
 int main(int argc, char** argv) {
     freopen("aparitii.in", "r", stdin);
@@ -29,14 +29,11 @@ int main(int argc, char** argv) {
     }
 
     for (int i = 19; i; i--) {
-        int c = 0;
         for (int j = 0; j < 10; j++) {
             if (counts[i][j] % k) {
-                c++;
                 printf("%d", j);
             }
         }
-            assert(c < 2);
     }
 
     printf("\n");
