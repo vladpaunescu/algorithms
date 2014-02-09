@@ -14,9 +14,11 @@ using namespace std;
 
 int n, l, cost[1002];
 int harti[16];
-vector<int> ratsOne[1002];
-vector<int> ratsZero[10002];
+// ce harti de sobolani raman in calcul daca raspundem cu 1 la bitul i
+int ratsOne[1002];
+int ratsZero[1002];
 int a[35000];
+int total;
 
 /*
  * Problema se rezolva prin programare dinamica. 
@@ -36,60 +38,57 @@ int a[35000];
  * folosind operatii pe biti.
  */
 
-int compute(int idx, int count, int taken) {
-    if (count == 1) {
-        a[idx] = 0;
-        return a[idx];
-    }
+inline bool powerOfTwo(int x) {
+    return !(x == 0) && !(x & (x - 1));
+}
+
+int compute(int idx, int taken) {
     if (a[idx] != -1) {
         return a[idx];
     }
 
-    int leftIdx, rightIdx, leftCount, rightCount;
+    int leftIdx, rightIdx;
     int minSum = INT_MAX;
     for (int i = 1; i <= l; i++) {
+        int s = 1 << (i - 1);
+        if (!(taken & s)) {
+            taken |= s;
+            int result = cost[i];
+            if (taken != total) {
+                leftIdx = ratsOne[i] & idx;
+                rightIdx = ratsZero[i] & idx;
 
-        if (!(taken & 1 << (i - 1))) {
-            taken = taken | 1 << (i - 1);
-            if (taken != (1 << l) - 1) {
-                leftIdx = 0, rightIdx = 0, leftCount = 0, rightCount = 0;
-                for (int el : ratsOne[i]) {
-                    if (1 << (el - 1) & idx) {
-                        leftIdx |= 1 << (el - 1);
-                        leftCount++;
+                int r1, r2;
+                if (leftIdx && !powerOfTwo(leftIdx)) {
+                    if (a[leftIdx] != -1) {
+                        r1 = a[leftIdx];
+                    } else {
+                        r1 = compute(leftIdx, taken);
                     }
+                } else {
+                    a[leftIdx] = 0;
+                    r1 = 0;
                 }
 
-                for (int el : ratsZero[i]) {
-                    if (1 << (el - 1) & idx) {
-                        rightIdx |= 1 << (el - 1);
-                        rightCount++;
+                if (rightIdx && !powerOfTwo(rightIdx)) {
+                    if (a[rightIdx] != -1) {
+                        r2 = a[rightIdx];
+                    } else {
+                        r2 = compute(rightIdx, taken);
                     }
+                } else {
+                    a[rightIdx] = 0;
+                    r2 = 0;
                 }
-                int r1 = -10000;
-                if (leftIdx)
-                    r1 = compute(leftIdx, leftCount, taken);
-                if (rightIdx) {
-                    int r2 = compute(rightIdx, rightCount, taken);
-                    if (r2 > r1) {
-                        r1 = r2;
-                    }
-                }
+                if (r2 > r1) r1 = r2;
 
-                r1 += cost[i];
-                if (r1 < minSum) {
-                    minSum = r1;
-                    a[idx] = minSum;
-                }
-
-
-            } else if (minSum > cost[i]) {
-                minSum = cost[i];
-                a[idx] = minSum;
-                return minSum;
+                result += r1;
             }
-
-            taken = taken & (~(1 << (i - 1)));
+            if (minSum > result) {
+                minSum = result;
+                a[idx] = minSum;
+            }
+            taken &= (~(1 << (i - 1)));
         }
     }
     return a[idx];
@@ -101,9 +100,9 @@ void convert(char *bits, int idx) {
     while (bits[i]) {
         if (bits[i] == '1') {
             harti[idx] += pow;
-            ratsOne[i + 1].push_back(idx);
+            ratsOne[i + 1] |= (1 << (idx - 1));
         } else {
-            ratsZero[i + 1].push_back(idx);
+            ratsZero[i + 1] |= (1 << (idx - 1));
         }
         pow >>= 1;
         i++;
@@ -124,20 +123,10 @@ int main(int argc, char** argv) {
         scanf("%d", cost + i);
     }
 
-    //    for (int i = 1; i <= n; i++) {
-    //        printf("%d\n", harti[i]);
-    //    }
-    //
-    //    for (int i = 1; i <= n; i++) {
-    //        for (vector<int>::iterator it = ratsOne[i].begin(); it != ratsOne[i].end();
-    //                ++it) {
-    //            printf("%d ", *it);
-    //        }
-    //        printf("\n");
-    //    }
     memset(a, -1, sizeof (a));
-    for(int i = 1; i <= (1 << n) - 1; i++){
-         compute(i, n, 0);
+    total = (1 << l) - 1;
+    for (int i = 1; i <= (1 << n) - 1; i++) {
+        compute(i, 0);
     }
     printf("%d\n", a[(1 << n) - 1]);
 

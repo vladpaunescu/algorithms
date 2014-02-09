@@ -8,13 +8,13 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>sobo.in</itemPath>
-      <itemPath>sobo.out</itemPath>
+      <itemPath>collar.in</itemPath>
+      <itemPath>collar.out</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>sobo.cpp</itemPath>
+      <itemPath>collar.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -37,18 +37,12 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
-        <cTool>
-          <standard>10</standard>
-        </cTool>
-        <ccTool>
-          <standard>8</standard>
-        </ccTool>
       </compileType>
-      <item path="sobo.cpp" ex="false" tool="1" flavor2="0">
+      <item path="collar.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="sobo.in" ex="false" tool="3" flavor2="0">
+      <item path="collar.in" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="sobo.out" ex="false" tool="3" flavor2="0">
+      <item path="collar.out" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -71,11 +65,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="sobo.cpp" ex="false" tool="1" flavor2="0">
+      <item path="collar.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="sobo.in" ex="false" tool="3" flavor2="0">
+      <item path="collar.in" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="sobo.out" ex="false" tool="3" flavor2="0">
+      <item path="collar.out" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
