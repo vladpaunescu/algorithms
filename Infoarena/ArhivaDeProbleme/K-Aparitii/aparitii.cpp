@@ -6,7 +6,6 @@
  */
 
 #include <cstdio>
-#include <assert.h>
 
 using namespace std;
 

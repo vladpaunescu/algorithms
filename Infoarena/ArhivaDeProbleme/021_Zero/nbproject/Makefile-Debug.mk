@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/sum.o
+	${OBJECTDIR}/zero.o
 
 
 # C Compiler Flags
@@ -56,16 +56,16 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sumnpartitiondistinctterms.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/021_zero.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sumnpartitiondistinctterms.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/021_zero.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sumnpartitiondistinctterms ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/021_zero ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/sum.o: sum.cpp 
+${OBJECTDIR}/zero.o: zero.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/sum.o sum.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/zero.o zero.cpp
 
 # Subprojects
 .build-subprojects:
@@ -73,7 +73,7 @@ ${OBJECTDIR}/sum.o: sum.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sumnpartitiondistinctterms.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/021_zero.exe
 
 # Subprojects
 .clean-subprojects:
