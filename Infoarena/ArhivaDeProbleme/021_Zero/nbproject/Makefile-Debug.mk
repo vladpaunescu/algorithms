@@ -64,8 +64,8 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/021_zero.exe: ${OBJECTFILES}
 
 ${OBJECTDIR}/zero.o: zero.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/zero.o zero.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/zero.o zero.cpp
 
 # Subprojects
 .build-subprojects:
