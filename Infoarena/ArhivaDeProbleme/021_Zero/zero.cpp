@@ -12,7 +12,7 @@ int l, b, p, q;
 
 /*
  * am dp[i][j]-cate numere de i cifre au ultimele j cifre 0. 
- * dp[0]=s*(B-1) unde s e suma de pe linia dp[i-1] pentru ca putem adauga 
+ * dp[i][0]=s*(B-1) unde s e suma de pe linia dp[i-1] pentru ca putem adauga 
  * o cira sa sfarsitul oricarui sir de lungime i-1. 
  * dp[j]=dp[i-1][j-1] pentru ca adaugam un 0 la sfarsitul rocarui sir ce are
  *  lungime i-1 si se tarmina in j-1 .
